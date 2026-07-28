@@ -4,7 +4,7 @@ Guardpot masaüstü uygulaması; **Deception**, **Honeypot** ve **Ağ Güvenliğ
 
 ---
 
-## 🌟 Öne Çıkan Özellikler
+## 🌟 Proje Özellikleri ve Mimari
 
 - 🌑 **Siber Güvenlik Teması**: Dark theme, neon yeşil (`#00e5a3`) dış ışıma efektleri ve vektörel SVG simgeleri.
 - 🖼️ **Orijinal Kırmızı Guardpot "G" Logosu**: Şirket kurumsal kimliğine uygun özel vektörel logo bileşeni.
@@ -12,7 +12,6 @@ Guardpot masaüstü uygulaması; **Deception**, **Honeypot** ve **Ağ Güvenliğ
 - 🚨 **Canlı Tehdit / SOC Paneli**: Son 24 saat engellenen saldırı sayısı, aktif Honeypot düğümleri ve Recorder akış durumu.
 - ⚡ **Hızlı Aksiyon Barı**: Sistem Sağlık Taraması, Tüm Logları Dışa Aktarma ve Acil Bağlantı Kesme butonları.
 - 🛡️ **Guardpot VGN Modülü**: Sanal Ağ Güvenliği, canlı trafik grafiği, tehdit tablosu ve Honeypot düğüm durumu.
-- 🎥 **Guardpot Recorder Modülü**: Canlı kamera/oturum akış önizleme kartları, kayıt başlat/durdur kontrolleri ve depolama alanı göstergesi.
 - 🌐 **Kalıcı Sunucu Bağlantısı**: URL kalıcılığı (`localStorage`) ve tak-çalıştır otomatik açılış desteği.
 
 ---
@@ -31,7 +30,7 @@ Guardpot masaüstü uygulaması; **Deception**, **Honeypot** ve **Ağ Güvenliğ
 
 ## 📂 Proje Klasör Yapısı
 
-```
+```text
 guardpot-desktop/
 ├── resources/              # Uygulama ikon ve görsel varlıkları
 ├── src/
@@ -39,12 +38,13 @@ guardpot-desktop/
 │   ├── preload/            # Güvenli preload bridge (contextBridge)
 │   └── renderer/           # React Kullanıcı Arayüzü
 │       └── src/
-│           ├── components/ # Tekrar kullanılabilir modüler bileşenler
+│           ├── components/ # Modüler UI bileşenleri
 │           │   ├── Header.jsx          # Üst Navigasyon Barı & Breadcrumb
 │           │   ├── Sidebar.jsx         # Sol Menü & Bağlantı Rozeti
 │           │   ├── ProductCard.jsx     # Dinamik Ürün Kartı Bileşeni
 │           │   ├── GuardpotLogo.jsx    # Vektörel Red Guardpot G Logosu
-│           │   └── TitleBar.jsx        # Pencere Kontrolleri
+│           │   ├── TitleBar.jsx        # Pencere Kontrolleri
+│           │   └── SettingsModal.jsx   # Sistem Ayarları Penceresi (Geliştirilecek)
 │           ├── context/
 │           │   └── AppContext.jsx      # Merkezi Context API State Yönetimi
 │           ├── services/
@@ -55,7 +55,7 @@ guardpot-desktop/
 │           ├── pages/
 │           │   ├── DashboardPage.jsx   # Ana Kontrol Paneli & SOC Merkez
 │           │   ├── VgnView.jsx         # Guardpot VGN Modül Ekranı
-│           │   ├── RecorderView.jsx    # Guardpot Recorder Modül Ekranı
+│           │   ├── RecorderView.jsx    # Guardpot Recorder Modül Ekranı (Geliştirilecek)
 │           │   └── ProductPage.jsx     # Dinamik Ürün Yönlendirme Sayfası
 │           ├── App.jsx
 │           └── App.css
@@ -65,45 +65,67 @@ guardpot-desktop/
 
 ---
 
-## 🚀 Kurulum ve Çalıştırma
+## 🚀 Projeyi Klonlama, Kurulum ve Çalıştırma
 
-Projeyi yerel bilgisayarınızda çalıştırmak için aşağıdaki adımları takip edin:
+Projeyi GitHub üzerinden kendi bilgisayarınıza indirip çalıştırmak için sırasıyla şu adımları uygulayın:
 
-### 1. Bağımlılıkları Yükleyin
+### 1. GitHub Reposunu Klonlayın (İndirin)
+Terminali (PowerShell / Command Prompt / Git Bash) açın ve komutu çalıştırın:
+```bash
+git clone https://github.com/KULLANICI_ADINIZ/guardpot-desktop.git
+```
+
+### 2. Proje Klasörüne Girin
+```bash
+cd guardpot-desktop
+```
+
+### 3. Gerekli Bağımlılıkları (Packages) Yükleyin
 ```bash
 npm install
 ```
 
-### 2. Geliştirme (Dev) Modunda Başlatın
+### 4. Geliştirme (Dev) Modunda Masaüstü Uygulamasını Başlatın
 ```bash
 npm run dev
 ```
 
-### 3. Windows Installer (.exe) Paketini Derleyin
+---
+
+## 🔄 Günlük Ekip Çalışma Kuralları (Git Pull & Push Rehberi)
+
+> Ekip üzerinde çakışma (conflict) yaşamamak için gün başlarında ve gün sonlarında şu adımları uygulamayı unutmayınız:
+
+### 🌅 Güne Başlarken (Koda Başlamadan Önce)
+Çalışmaya başlamadan önce yapılan son güncellemeleri kendi bilgisayarınıza çekmek için terminalde çalıştırın:
 ```bash
-npm run build:win
+git pull origin main
 ```
-*Derlenen `.exe` kurulum dosyası `dist/` klasörüne çıktı olarak verilecektir.*
+
+### 🌆 Gün Sonunda (Çalışmayı Bitirirken)
+Gün sonunda yazdığınız tüm yeni kodları GitHub'a göndermek için terminalde sırasıyla çalıştırın:
+```bash
+git add .
+git commit -m "feat: Gunluk yapilan gelistirmeler ve yeni kodlar"
+git push origin main
+```
 
 ---
 
-## 🤝 Stajyer Görev Paylaşım Planı (%50 - %50)
+## 🤝 Modüler Geliştirme Durumu (Roadmap)
 
-Proje geliştirme sürecini 2 stajyer arasında eşit olarak yürütmek için hazırlanan modüler iş bölümü:
-
-### 💙 Tamamlanan Altyapı & Modüller (%50)
+### 💙 Tamamlanan Modüller
 - [x] Electron + Vite projesinin sıfırdan kurulumu ve konfigürasyonu.
-- [x] Çerçevesiz pencere (Frameless window) ve `TitleBar` bileşeni.
-- [x] Tasarım sistemi, koyu tema CSS değişkenleri ve vektörel `GuardpotLogo`.
+- [x] Çerçevesiz pencere (Frameless window) ve `TitleBar` pencere kontrolleri.
+- [x] Siber güvenlik tasarım sistemi, dark theme CSS değişkenleri ve vektörel `GuardpotLogo`.
 - [x] `AppContext.jsx` ile merkezi state yönetimi ve URL kalıcılığı.
-- [x] Guardpot VGN modülü arayüzü, canlı grafik ve tehdit log tablosu (`VgnView.jsx`).
+- [x] **Guardpot VGN Modülü** (`VgnView.jsx`): Canlı trafik grafiği, tehdit tablosu ve Honeypot düğüm durumu.
 
-### 💚 Arkadaşınıza Bırakılan Geliştirme Alanları (%50)
-- [ ] **Guardpot Recorder Modülü (`RecorderView.jsx`)**: Canlı akış oynatıcı bileşeni ve kayıt kontrol mantığı.
-- [ ] **Sistem Ayarları Modalı (`SettingsModal.jsx`)**: Üst bardaki çark ikonuna basıldığında açılan popup modalı.
-- [ ] **Log Filtreleme ve Dışa Aktarma (`exportLogs.js`)**: Tehdit loglarını JSON/CSV dosyası olarak indirme fonksiyonu.
-- [ ] **Canlı Bildirim Sistemi (`Toast.jsx`)**: Ekranın sağ altında gösterilen bildirim kutucukları.
-- [ ] **Windows Çıktısı Derleme ve Test (`npm run build:win`)**.
+### 💚 Geliştirilecek Modüller (Roadmap)
+- [ ] **Guardpot Recorder Modülü** (`RecorderView.jsx`): Canlı kamera/oturum akış kartlarının, önizleme kutularının ve kayıt başlat/durdur butonlarının geliştirilmesi.
+- [ ] **Sistem Ayarları Modalı** (`SettingsModal.jsx`): Üst bardaki ayarlar butonuna basıldığında açılan Sunucu URL değiştirme penceresinin kodlanması.
+- [ ] **Log Dışa Aktarma Utili** (`exportLogs.js`): Tehdit loglarını JSON/CSV dosyası olarak indirme fonksiyonunun yazılması.
+- [ ] **Canlı Bildirim Bileşeni** (`Toast.jsx`): Sağ alt bildirim toast kutucuklarının yapılması.
 
 ---
 
