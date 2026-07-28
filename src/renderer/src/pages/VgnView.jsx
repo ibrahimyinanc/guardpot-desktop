@@ -3,11 +3,11 @@ import { useState } from 'react'
 export default function VgnView() {
   const [activeTab, setActiveTab] = useState('traffic')
   const [threatLogs] = useState([
-    { id: 'LOG-8942', time: '11:18:42', ip: '192.168.1.104', type: 'SSH Brute Force', severity: 'Yuksek', status: 'Engellendi' },
-    { id: 'LOG-8941', time: '11:17:15', ip: '45.142.120.9', type: 'Port Scanning (Nmap)', severity: 'Orta', status: 'Izleniyor' },
-    { id: 'LOG-8940', time: '11:15:02', ip: '185.220.101.5', type: 'HTTP Vulnerability Probe', severity: 'Kritik', status: 'Engellendi' },
-    { id: 'LOG-8939', time: '11:12:30', ip: '10.0.4.52', type: 'SQL Injection Traversal', severity: 'Yuksek', status: 'Engellendi' },
-    { id: 'LOG-8938', time: '11:08:19', ip: '192.168.1.210', type: 'DNS Tunneling Attempt', severity: 'Dusuk', status: 'Izleniyor' }
+    { id: 'LOG-8942', time: '11:18:42', ip: '192.168.1.104', type: 'SSH Brute Force', severity: 'High', status: 'Blocked' },
+    { id: 'LOG-8941', time: '11:17:15', ip: '45.142.120.9', type: 'Port Scanning (Nmap)', severity: 'Medium', status: 'Monitored' },
+    { id: 'LOG-8940', time: '11:15:02', ip: '185.220.101.5', type: 'HTTP Vulnerability Probe', severity: 'Critical', status: 'Blocked' },
+    { id: 'LOG-8939', time: '11:12:30', ip: '10.0.4.52', type: 'SQL Injection Traversal', severity: 'High', status: 'Blocked' },
+    { id: 'LOG-8938', time: '11:08:19', ip: '192.168.1.210', type: 'DNS Tunneling Attempt', severity: 'Low', status: 'Monitored' }
   ])
 
   return (
@@ -22,49 +22,49 @@ export default function VgnView() {
           </div>
           <div>
             <h1 className="module-page-title">Guardpot VGN (Virtual Gate Network)</h1>
-            <p className="module-page-desc">Sanal Ağ Güvenliği, Honeypot Düğümleri ve Trafik İzleme Paneli</p>
+            <p className="module-page-desc">Virtual Gate Security, Honeypot Nodes and Traffic Monitoring Panel</p>
           </div>
         </div>
         <div className="module-status-badge green">
           <span className="dot" />
-          <span>VGN Servisi Aktif (14 Düğüm)</span>
+          <span>VGN Service Active (14 Nodes)</span>
         </div>
       </div>
 
       {/* STAT METRICS ROW */}
       <div className="module-stats-row">
         <div className="module-stat-card">
-          <span className="label">ANLIK BANT GENİŞLİĞİ</span>
+          <span className="label">INSTANT BANDWIDTH</span>
           <span className="value">450.4 Mbps</span>
-          <span className="sub green">↑ %12 stabil akış</span>
+          <span className="sub green">↑ %12 stable stream</span>
         </div>
         <div className="module-stat-card">
-          <span className="label">DÜĞÜM DURUMU</span>
-          <span className="value">14 / 14 Aktif</span>
-          <span className="sub green">● 0 Kesinti</span>
+          <span className="label">NODE STATUS</span>
+          <span className="value">14 / 14 Active</span>
+          <span className="sub green">● 0 Outage</span>
         </div>
         <div className="module-stat-card">
-          <span className="label">TOPLAM TEHDİT (24S)</span>
-          <span className="value">342 Olay</span>
-          <span className="sub red">🔴 128 Engellendi</span>
+          <span className="label">TOTAL THREATS (24H)</span>
+          <span className="value">342 Events</span>
+          <span className="sub red">🔴 128 Blocked</span>
         </div>
         <div className="module-stat-card">
-          <span className="label">ANOMALİ SKORU</span>
+          <span className="label">ANOMALY SCORE</span>
           <span className="value">0.02 / 1.00</span>
-          <span className="sub green">✓ Güvenli Seviye</span>
+          <span className="sub green">✓ Secure Level</span>
         </div>
       </div>
 
       {/* TAB NAVIGATION */}
       <div className="module-tabs-bar">
         <button className={`tab-btn ${activeTab === 'traffic' ? 'active' : ''}`} onClick={() => setActiveTab('traffic')}>
-          📈 Canlı Trafik & Grafikler
+          📈 Live Traffic & Analytics
         </button>
         <button className={`tab-btn ${activeTab === 'logs' ? 'active' : ''}`} onClick={() => setActiveTab('logs')}>
-          🛡️ Tehdit & Saldırı Logları
+          🛡️ Threat & Attack Logs
         </button>
         <button className={`tab-btn ${activeTab === 'nodes' ? 'active' : ''}`} onClick={() => setActiveTab('nodes')}>
-          🌐 Honeypot Düğümleri (14)
+          🌐 Honeypot Nodes (14)
         </button>
       </div>
 
@@ -73,8 +73,8 @@ export default function VgnView() {
         <div className="module-tab-content">
           <div className="vgn-chart-card">
             <div className="chart-header">
-              <h3>Sanal Ağ Trafik Analizi (Mbps)</h3>
-              <span className="live-pill red">● Canlı Akış (1sn)</span>
+              <h3>Virtual Network Traffic Analysis (Mbps)</h3>
+              <span className="live-pill red">● Live Stream (1s)</span>
             </div>
             <div className="vgn-graph-container">
               <svg className="vgn-svg-chart" viewBox="0 0 700 180" fill="none">
@@ -101,7 +101,7 @@ export default function VgnView() {
                 <span>11:05</span>
                 <span>11:10</span>
                 <span>11:15</span>
-                <span>11:20 (Canlı)</span>
+                <span>11:20 (Live)</span>
               </div>
             </div>
           </div>
@@ -112,16 +112,16 @@ export default function VgnView() {
       {activeTab === 'logs' && (
         <div className="module-tab-content">
           <div className="vgn-logs-card">
-            <h3>Son Algılanan Güvenlik Olayları</h3>
+            <h3>Recent Security Events</h3>
             <table className="vgn-table">
               <thead>
                 <tr>
-                  <th>Olay ID</th>
-                  <th>Zaman</th>
-                  <th>Kaynak IP</th>
-                  <th>Saldırı Türü</th>
-                  <th>Önem Derecesi</th>
-                  <th>Eylem</th>
+                  <th>Event ID</th>
+                  <th>Timestamp</th>
+                  <th>Source IP</th>
+                  <th>Attack Type</th>
+                  <th>Severity</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -135,7 +135,7 @@ export default function VgnView() {
                       <span className={`severity-badge ${log.severity.toLowerCase()}`}>{log.severity}</span>
                     </td>
                     <td>
-                      <span className={`action-badge ${log.status === 'Engellendi' ? 'blocked' : 'monitored'}`}>
+                      <span className={`action-badge ${log.status === 'Blocked' ? 'blocked' : 'monitored'}`}>
                         {log.status}
                       </span>
                     </td>
@@ -154,13 +154,13 @@ export default function VgnView() {
             {Array.from({ length: 6 }).map((_, i) => (
               <div key={i} className="node-card">
                 <div className="node-card-top">
-                  <span className="node-title">Honeypot Düğümü #{i + 1}</span>
+                  <span className="node-title">Honeypot Node #{i + 1}</span>
                   <span className="node-status-dot active green" />
                 </div>
                 <span className="node-ip green">10.0.10.10{i + 1}</span>
                 <div className="node-meta">
-                  <span>Mod: Deception Active</span>
-                  <span>Portlar: 22, 80, 443, 3306</span>
+                  <span>Mode: Deception Active</span>
+                  <span>Ports: 22, 80, 443, 3306</span>
                 </div>
               </div>
             ))}

@@ -2,10 +2,8 @@ import { createContext, useContext, useState, useCallback } from 'react'
 
 const AppContext = createContext(null)
 
-// Kod üzerinden kolayca değiştirebileceğiniz varsayılan Guardpot URL'si
 export const DEFAULT_GUARDPOT_URL = 'https://guardpot.com'
 
-// localStorage helpers
 const STORAGE_KEY = 'guardpot_url'
 
 function getSavedUrl() {
@@ -37,53 +35,49 @@ export function AppProvider({ children }) {
     {
       id: 'vgn',
       name: 'Guardpot VGN',
-      description: 'Sanal ağ güvenliği ve trafik izleme çözümü',
+      description: 'Virtual Gate Network security and traffic monitoring solution',
       icon: '🛡️',
-      status: 'active',
-      color: '#00D4AA'
+      status: 'Active',
+      color: '#DC2626'
     },
     {
       id: 'recorder',
       name: 'Guardpot Recorder',
-      description: 'Kayıt ve izleme yönetim sistemi',
+      description: 'Session, video and audio recording management system',
       icon: '🎥',
-      status: 'active',
-      color: '#6C63FF'
+      status: 'Active',
+      color: '#DC2626'
     }
   ])
 
-  const [activeNavItem, setActiveNavItem] = useState('genel-bakis')
+  const [activeNavItem, setActiveNavItem] = useState('overview')
   const [currentUser] = useState({
     name: 'owner',
     email: 'admin@guardpot.com'
   })
-  const [domains] = useState({
-    publicDomain: 'app.guardpot.com',
-    manageDomain: 'manage.guardpot.com'
-  })
 
-  // Wrap setter to persist URL
   const setGuardpotUrl = useCallback((url) => {
     _setGuardpotUrl(url)
     saveUrl(url)
   }, [])
 
-  // Disconnect — clear saved URL
   const disconnect = useCallback(() => {
     _setGuardpotUrl('')
     setIsConnected(false)
     saveUrl('')
   }, [])
 
-  // Navigation helpers
-  const navigateToProduct = useCallback((productOrId) => {
-    if (typeof productOrId === 'string') {
-      const found = products.find((p) => p.id === productOrId)
-      setActiveProduct(found || null)
-    } else {
-      setActiveProduct(productOrId)
-    }
-  }, [products])
+  const navigateToProduct = useCallback(
+    (productOrId) => {
+      if (typeof productOrId === 'string') {
+        const found = products.find((p) => p.id === productOrId)
+        setActiveProduct(found || null)
+      } else {
+        setActiveProduct(productOrId)
+      }
+    },
+    [products]
+  )
 
   const navigateToDashboard = useCallback(() => {
     setActiveProduct(null)
@@ -101,7 +95,6 @@ export function AppProvider({ children }) {
         activeNavItem,
         setActiveNavItem,
         currentUser,
-        domains,
         navigateToProduct,
         navigateToDashboard,
         products,

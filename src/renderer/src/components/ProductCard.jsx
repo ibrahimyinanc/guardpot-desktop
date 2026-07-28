@@ -1,7 +1,7 @@
 import { useApp } from '../context/AppContext'
 
 // VGN Shield Vector SVG Icon
-export function VgnIcon({ size = 28, color = '#00e5a3' }) {
+export function VgnIcon({ size = 28, color = '#DC2626' }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
       <path
@@ -23,7 +23,7 @@ export function VgnIcon({ size = 28, color = '#00e5a3' }) {
 }
 
 // Recorder Video Stream Vector SVG Icon
-export function RecorderIcon({ size = 28, color = '#6c5ce7' }) {
+export function RecorderIcon({ size = 28, color = '#DC2626' }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
       <rect x="2" y="4" width="14" height="16" rx="3" stroke={color} strokeWidth="1.8" />
@@ -37,7 +37,7 @@ export default function ProductCard({
   product,
   title,
   description,
-  status = 'Aktif',
+  status = 'Active',
   icon,
   onClick,
   onNavigate,
@@ -45,10 +45,10 @@ export default function ProductCard({
 }) {
   const { navigateToProduct } = useApp()
 
-  const cardTitle = title || product?.name || 'Guardpot Ürün'
+  const cardTitle = title || product?.name || 'Guardpot Product'
   const cardDesc = description || product?.description || ''
-  const cardStatus = status || product?.status || 'Aktif'
-  const cardColor = color || product?.color || '#00e5a3'
+  const cardStatus = status || product?.status || 'Active'
+  const cardColor = color || product?.color || '#DC2626'
 
   const handleSelect = () => {
     if (onNavigate) {
@@ -103,7 +103,7 @@ export default function ProductCard({
 
       <div className="product-card-footer">
         <button className="product-open-btn" tabIndex={-1}>
-          Yönetim Paneli
+          Management Panel
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path
               d="M6 3L11 8L6 13"

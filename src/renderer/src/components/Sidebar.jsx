@@ -4,29 +4,45 @@ import GuardpotLogo from './GuardpotLogo'
 function Sidebar({ onDisconnect }) {
   const { products, activeProduct, setActiveProduct, disconnect } = useApp()
 
+  const handleDisconnect = () => {
+    if (onDisconnect) {
+      onDisconnect()
+    } else {
+      disconnect()
+    }
+  }
+
   return (
-    <div className="sidebar">
+    <aside className="sidebar">
       <div className="sidebar-header">
         <div className="sidebar-logo">
-          <GuardpotLogo size={32} />
+          <GuardpotLogo size={28} />
           <div className="sidebar-logo-text">
             <span className="sidebar-brand">Guardpot</span>
-            <span className="sidebar-subtitle">Çekirdek Platform</span>
+            <span className="sidebar-subtitle">Core Platform</span>
           </div>
         </div>
       </div>
 
       <nav className="sidebar-nav">
-        <div className="sidebar-section-title">Ürünler</div>
+        <div className="sidebar-section-title">PRODUCTS</div>
+
+        <button
+          className={`sidebar-item ${!activeProduct ? 'active' : ''}`}
+          onClick={() => setActiveProduct(null)}
+        >
+          <span className="sidebar-item-icon">📊</span>
+          <span>Overview</span>
+        </button>
+
         {products.map((product) => (
           <button
             key={product.id}
             className={`sidebar-item ${activeProduct?.id === product.id ? 'active' : ''}`}
-            onClick={() => setActiveProduct(activeProduct?.id === product.id ? null : product)}
+            onClick={() => setActiveProduct(product)}
           >
             <span className="sidebar-item-icon">{product.icon}</span>
-            <span className="sidebar-item-text">{product.name}</span>
-            <span className="sidebar-item-badge" style={{ background: product.color }} />
+            <span>{product.name}</span>
           </button>
         ))}
       </nav>
@@ -34,27 +50,26 @@ function Sidebar({ onDisconnect }) {
       <div className="sidebar-footer">
         <div className="sidebar-connection">
           <span className="connection-dot" />
-          <span className="connection-text">Bağlı</span>
+          <span className="connection-text">Connected</span>
         </div>
         <button
           className="sidebar-disconnect-btn"
-          onClick={() => {
-            if (confirm('Guardpot sunucu bağlantısını sıfırlamak ve yeni URL girmek istiyor musunuz?')) {
-              disconnect()
-              if (onDisconnect) onDisconnect()
-            }
-          }}
-          title="Bağlantıyı değiştir"
+          onClick={handleDisconnect}
+          title="Change Guardpot URL"
         >
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M5 2H2V12H5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-            <path d="M9 4L12 7L9 10" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M12 7H5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path
+              d="M2.5 6H9.5M9.5 6L6.5 3M9.5 6L6.5 9"
+              stroke="currentColor"
+              strokeWidth="1.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
-          <span>URL Değiştir</span>
+          Change URL
         </button>
       </div>
-    </div>
+    </aside>
   )
 }
 

@@ -1,58 +1,67 @@
-import { useState, useEffect } from 'react'
 import GuardpotLogo from './GuardpotLogo'
 
 function TitleBar() {
-  const [isMaximized, setIsMaximized] = useState(false)
+  const handleMinimize = () => {
+    window.guardpot?.minimizeWindow()
+  }
 
-  useEffect(() => {
-    window.guardpot?.isMaximized().then(setIsMaximized)
-    const cleanup = window.guardpot?.onMaximizeChange(setIsMaximized)
-    return () => {
-      if (typeof cleanup === 'function') cleanup()
-    }
-  }, [])
+  const handleMaximize = () => {
+    window.guardpot?.maximizeWindow()
+  }
+
+  const handleClose = () => {
+    window.guardpot?.closeWindow()
+  }
 
   return (
     <div className="title-bar">
-      <div className="title-bar-drag">
-        <div className="title-bar-logo">
-          <GuardpotLogo size={20} />
-          <span className="title-bar-text">Guardpot</span>
+      <div className="title-bar-drag-area">
+        <div className="title-bar-brand">
+          <GuardpotLogo size={18} />
+          <span className="title-bar-title">Guardpot</span>
         </div>
       </div>
       <div className="title-bar-controls">
         <button
-          className="title-btn minimize"
-          onClick={() => window.guardpot?.minimizeWindow()}
-          aria-label="Küçült"
+          className="title-bar-btn minimize"
+          onClick={handleMinimize}
+          aria-label="Minimize"
+          title="Minimize"
         >
-          <svg width="12" height="12" viewBox="0 0 12 12">
-            <rect x="1" y="5.5" width="10" height="1" fill="currentColor" />
+          <svg width="10" height="1" viewBox="0 0 10 1">
+            <rect width="10" height="1" fill="currentColor" />
           </svg>
         </button>
         <button
-          className="title-btn maximize"
-          onClick={() => window.guardpot?.maximizeWindow()}
-          aria-label={isMaximized ? 'Önceki boyut' : 'Büyüt'}
+          className="title-bar-btn maximize"
+          onClick={handleMaximize}
+          aria-label="Maximize"
+          title="Maximize"
         >
-          {isMaximized ? (
-            <svg width="12" height="12" viewBox="0 0 12 12">
-              <rect x="2.5" y="0.5" width="8" height="8" rx="1" fill="none" stroke="currentColor" strokeWidth="1" />
-              <rect x="1" y="3" width="8" height="8" rx="1" fill="var(--color-bg-primary)" stroke="currentColor" strokeWidth="1" />
-            </svg>
-          ) : (
-            <svg width="12" height="12" viewBox="0 0 12 12">
-              <rect x="1" y="1" width="10" height="10" rx="1.5" fill="none" stroke="currentColor" strokeWidth="1.2" />
-            </svg>
-          )}
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+            <rect
+              x="0.5"
+              y="0.5"
+              width="9"
+              height="9"
+              stroke="currentColor"
+              strokeWidth="1"
+            />
+          </svg>
         </button>
         <button
-          className="title-btn close"
-          onClick={() => window.guardpot?.closeWindow()}
-          aria-label="Kapat"
+          className="title-bar-btn close"
+          onClick={handleClose}
+          aria-label="Close"
+          title="Close"
         >
-          <svg width="12" height="12" viewBox="0 0 12 12">
-            <path d="M2 2L10 10M10 2L2 10" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+          <svg width="10" height="10" viewBox="0 0 10 10">
+            <path
+              d="M1 1L9 9M9 1L1 9"
+              stroke="currentColor"
+              strokeWidth="1.2"
+              strokeLinecap="round"
+            />
           </svg>
         </button>
       </div>

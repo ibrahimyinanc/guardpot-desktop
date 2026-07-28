@@ -24,7 +24,7 @@ function Header() {
         </div>
 
         <div className="top-bar-right">
-          <div className="top-bar-url" title="Bağlı Guardpot URL'si">
+          <div className="top-bar-url" title="Connected Guardpot URL">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <circle cx="7" cy="7" r="5.5" stroke="currentColor" strokeWidth="1.2" />
               <path
@@ -33,12 +33,12 @@ function Header() {
                 strokeWidth="1.2"
               />
             </svg>
-            <span>{guardpotUrl || 'Bağlantı yok'}</span>
+            <span>{guardpotUrl || 'Not connected'}</span>
           </div>
           <button
             className="top-bar-settings"
-            aria-label="Ayarlar"
-            title="Sistem Ayarları"
+            aria-label="Settings"
+            title="System Settings"
             onClick={() => setIsSettingsOpen(true)}
           >
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -54,7 +54,7 @@ function Header() {
         </div>
       </header>
 
-      {/* SİSTEM AYARLARI MODALI */}
+      {/* SYSTEM SETTINGS MODAL */}
       <SettingsModal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
     </>
   )

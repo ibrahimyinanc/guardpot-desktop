@@ -19,7 +19,7 @@ function ProductPage({ product, onBack }) {
               strokeLinejoin="round"
             />
           </svg>
-          <span>Dashboard'a Dön</span>
+          <span>Back to Dashboard</span>
         </button>
       </div>
 
@@ -28,8 +28,8 @@ function ProductPage({ product, onBack }) {
         {product?.id === 'recorder' && <RecorderView />}
         {!['vgn', 'recorder'].includes(product?.id) && (
           <div className="product-placeholder">
-            <h3>{product?.name} Modülü</h3>
-            <p>Bu ürün entegrasyonu tamamlandığında burada görünecektir.</p>
+            <h3>{product?.name} Module</h3>
+            <p>This module will be displayed here once integration is complete.</p>
           </div>
         )}
       </div>
