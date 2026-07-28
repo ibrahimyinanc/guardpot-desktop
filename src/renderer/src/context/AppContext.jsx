@@ -3,7 +3,7 @@ import { createContext, useContext, useState, useCallback } from 'react'
 const AppContext = createContext(null)
 
 // Kod üzerinden kolayca değiştirebileceğiniz varsayılan Guardpot URL'si
-export const DEFAULT_GUARDPOT_URL = 'https://app.guardpot.com'
+export const DEFAULT_GUARDPOT_URL = 'https://guardpot.com'
 
 // localStorage helpers
 const STORAGE_KEY = 'guardpot_url'

@@ -17,7 +17,7 @@ export default function VgnView() {
         <div className="module-title-box">
           <div className="module-icon-badge vgn">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M12 2L3 6V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V6L12 2Z" stroke="#00E5A3" strokeWidth="2" />
+              <path d="M12 2L3 6V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V6L12 2Z" stroke="#DC2626" strokeWidth="2" />
             </svg>
           </div>
           <div>
@@ -25,7 +25,7 @@ export default function VgnView() {
             <p className="module-page-desc">Sanal Ağ Güvenliği, Honeypot Düğümleri ve Trafik İzleme Paneli</p>
           </div>
         </div>
-        <div className="module-status-badge active">
+        <div className="module-status-badge green">
           <span className="dot" />
           <span>VGN Servisi Aktif (14 Düğüm)</span>
         </div>
@@ -74,27 +74,27 @@ export default function VgnView() {
           <div className="vgn-chart-card">
             <div className="chart-header">
               <h3>Sanal Ağ Trafik Analizi (Mbps)</h3>
-              <span className="live-pill">● Canlı Akış (1sn)</span>
+              <span className="live-pill red">● Canlı Akış (1sn)</span>
             </div>
             <div className="vgn-graph-container">
               <svg className="vgn-svg-chart" viewBox="0 0 700 180" fill="none">
                 <defs>
-                  <linearGradient id="vgnAreaGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#00E5A3" stopOpacity="0.4" />
-                    <stop offset="100%" stopColor="#00E5A3" stopOpacity="0" />
+                  <linearGradient id="vgnAreaGradRed" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#DC2626" stopOpacity="0.5" />
+                    <stop offset="100%" stopColor="#DC2626" stopOpacity="0.0" />
                   </linearGradient>
                 </defs>
                 <path
                   d="M 10 130 C 70 140, 110 60, 180 90 C 250 120, 290 40, 360 70 C 430 100, 480 30, 550 80 C 610 120, 650 40, 690 30 L 690 180 L 10 180 Z"
-                  fill="url(#vgnAreaGrad)"
+                  fill="url(#vgnAreaGradRed)"
                 />
                 <path
                   d="M 10 130 C 70 140, 110 60, 180 90 C 250 120, 290 40, 360 70 C 430 100, 480 30, 550 80 C 610 120, 650 40, 690 30"
-                  stroke="#00E5A3"
-                  strokeWidth="3"
+                  stroke="#EF4444"
+                  strokeWidth="3.5"
                   strokeLinecap="round"
                 />
-                <circle cx="690" cy="30" r="5" fill="#00E5A3" />
+                <circle cx="690" cy="30" r="5" fill="#EF4444" />
               </svg>
               <div className="graph-time-labels">
                 <span>11:00</span>
@@ -129,7 +129,7 @@ export default function VgnView() {
                   <tr key={log.id}>
                     <td className="code-text">{log.id}</td>
                     <td className="time-text">{log.time}</td>
-                    <td className="ip-text">{log.ip}</td>
+                    <td className="ip-text red">{log.ip}</td>
                     <td>{log.type}</td>
                     <td>
                       <span className={`severity-badge ${log.severity.toLowerCase()}`}>{log.severity}</span>
@@ -155,9 +155,9 @@ export default function VgnView() {
               <div key={i} className="node-card">
                 <div className="node-card-top">
                   <span className="node-title">Honeypot Düğümü #{i + 1}</span>
-                  <span className="node-status-dot active" />
+                  <span className="node-status-dot active green" />
                 </div>
-                <span className="node-ip">10.0.10.10{i + 1}</span>
+                <span className="node-ip green">10.0.10.10{i + 1}</span>
                 <div className="node-meta">
                   <span>Mod: Deception Active</span>
                   <span>Portlar: 22, 80, 443, 3306</span>
