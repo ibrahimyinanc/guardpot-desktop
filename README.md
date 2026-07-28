@@ -131,4 +131,4 @@ git push origin main
 
 ## 📝 Lisans
 
-Bu proje **Guardpot Siber Güvenlik Teknolojileri** bünyesinde geliştirilmiştir. Tüm hakları saklıdır.
+Bu proje **Priente group** bünyesinde geliştirilmiştir. Tüm hakları saklıdır.
